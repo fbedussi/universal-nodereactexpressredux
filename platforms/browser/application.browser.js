@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, compose as _compose} from 'redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {Router, browserHistory, match} from 'react-router';
 
@@ -11,10 +11,24 @@ import {reducers} from 'Reducers';
 import {middlewares} from 'Middlewares';
 
 
+const compose = (devtool => {
+  let res = _compose;
+
+  /* eslint no-undef: 0 */
+  if(!__WEBPACK_ENV_PRODUCTION__) {
+    if(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+      res = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    }
+  }
+
+  return res;
+})(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__);
+
+
 const store = createStore(
   reducers,
   window.__INITIAL_STATE__ || Object.create(null),
-  middlewares
+  compose(middlewares)
 );
 
 const history = syncHistoryWithStore(browserHistory, store);

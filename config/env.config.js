@@ -29,7 +29,7 @@ const NODE_ENV = (() => {
   if(!res) {
     let prod = process.argv.some(arg => /^-{1,2}p(roduction)?$/i.test(arg));
     if(prod) {
-      res = ENVIRONMENTS.PRODUCTION
+      res = ENVIRONMENTS.PRODUCTION;
     }
 
   }

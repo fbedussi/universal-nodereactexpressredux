@@ -11,7 +11,9 @@
     "webpack:dll": "webpack --config webpack.dll.config.js",
     "webpack": "npm run webpack:dll && npm run webpack:base",
     "webpack:prod": "npm run webpack:dll -- -p && npm run webpack:base && npm run webpack:browser -- -p ",
-    "webpack:watch": "npm run webpack:base -- -w"
+    "webpack:watch": "npm run webpack:base -- -w",
+    "gulp:watch": "gulp watch",
+    "watch": "parallelshell \"npm run gulp:watch\" \"npm run webpack:watch\""
   },
   "repository": {
     "type": "git",
@@ -77,6 +79,7 @@
     "eslint-plugin-react": "^6.8.0",
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.37.4",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "parallelshell": "^2.0.0"
   }
 }

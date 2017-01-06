@@ -24,9 +24,13 @@ const CONSTANTS = {
   __WEBPACK_ENV_PRODUCTION__: ENV_IS_PRODUCTION
 };
 const BROWSER_CONSTANTS = merge({}, CONSTANTS, {
+  __WEBPACK_IS_BROWSER__: JSON.stringify(true),
+  __WEBPACK_IS_NODE__: JSON.stringify(false)
 });
 const NODE_CONSTANTS = merge({}, CONSTANTS, {
-  __WEBPACK_DEFINED_ROOT__: JSON.stringify(__dirname)
+  __WEBPACK_DEFINED_ROOT__: JSON.stringify(__dirname),
+  __WEBPACK_IS_BROWSER__: JSON.stringify(false),
+  __WEBPACK_IS_NODE__: JSON.stringify(true)
 });
 
 

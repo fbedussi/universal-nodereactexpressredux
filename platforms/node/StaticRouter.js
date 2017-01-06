@@ -2,8 +2,7 @@ import express from 'express';
 
 import {
   PUBLIC_FS_PATH,
-  PUBLIC_PATH,
-  BROWSER_DIRNAME
+  PUBLIC_PATH
 } from 'config/build.config';
 
 import {

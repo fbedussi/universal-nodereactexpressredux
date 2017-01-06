@@ -19,6 +19,8 @@ const app = express();
 app
   .set('port', PORT)
   .set('view engine', 'ejs')
+  .set('view cache', ENV_IS_PRODUCTION)
+  .set('env', ENV)
   .set('views', EJS_PATH)
 ;
 

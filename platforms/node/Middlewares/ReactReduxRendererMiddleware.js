@@ -49,6 +49,7 @@ export function ReactReduxRendererMiddleware(req, res, next) {
         .then(store => {
           let html;
           let head;
+          let state;
 
           try {
             html = renderToString(
@@ -58,15 +59,19 @@ export function ReactReduxRendererMiddleware(req, res, next) {
             );
 
             head = Helmet.rewind();
+            state = store.getState();
           } catch(e) {
 
             return Promise.reject(e);
           }
 
-          return {html, head};
+          return {html, head, state};
         })
-        .then(({html, head}) => {
+        .then(({html, head, state}) => {
 
+          if(state) {
+            res.viewModel.__INITIAL_STATE__ = state;
+          }
           if(html) {
             res.viewModel.__PRERENDERED_HTML__ = html;
           }

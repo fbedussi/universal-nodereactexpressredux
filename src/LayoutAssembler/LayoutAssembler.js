@@ -1,25 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
+import {LayoutAssemblerBase} from './LayoutAssemblerBase';
 
-
-export class LayoutAssembler extends Component {
-
-  static propTypes = {
-    children: PropTypes.any.isRequired
-  };
-
-  NS = 'application';
-  headerClasses = `${this.NS}-header header`;
-  footerClasses = `${this.NS}-footer footer`;
-  sidebarClasses = `${this.NS}-sidebar sidebar`;
-  mainClasses = `${this.NS}-main main`;
-
-  get htmlAttributes() {
-    let amp;
-    let lang = 'en';
-
-    return {lang, amp};
-  }
+export class LayoutAssembler extends LayoutAssemblerBase {
 
   renderHeader() {
     let Header;
@@ -85,8 +68,12 @@ export class LayoutAssembler extends Component {
       <div className={this.NS}>
         <Helmet
           htmlAttributes={this.htmlAttributes}
-          title="My Title"
-          titleTemplate="MySite.com - %s" />
+          title="Test"
+          titleTemplate="Test.com - %s"
+          link={
+            [].concat(this.css)
+          }
+        />
 
         {this.renderHeader()}
         {this.renderSidebar()}
