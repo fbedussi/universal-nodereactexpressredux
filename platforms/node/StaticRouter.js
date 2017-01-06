@@ -2,7 +2,8 @@ import express from 'express';
 
 import {
   PUBLIC_FS_PATH,
-  PUBLIC_PATH
+  PUBLIC_PATH,
+  BROWSER_DIRNAME
 } from 'config/build.config';
 
 import {
@@ -11,7 +12,6 @@ import {
 } from 'config/env.config';
 
 export function decorate(app) {
-
   const configs = {
     index: false,
     maxAge: ENV_IS_PRODUCTION ? CACHE_MAXAGE : 0

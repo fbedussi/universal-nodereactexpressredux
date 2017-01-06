@@ -23,7 +23,21 @@ const ENVIRONMENTS = {
   PRODUCTION: 'production'
 };
 
-const NODE_ENV = (process.env.NODE_ENV || '').toLowerCase();
+const NODE_ENV = (() => {
+  let res = (process.env.NODE_ENV || '').toLowerCase();
+
+  if(!res) {
+    let prod = process.argv.some(arg => /^-{1,2}p(roduction)?$/i.test(arg));
+    if(prod) {
+      res = ENVIRONMENTS.PRODUCTION
+    }
+
+  }
+
+  return res;
+})();
+
+
 const NODE_PORT = Number(process.env.NODE_PORT || 3000);
 const LOCALHOST = 'localhost';
 

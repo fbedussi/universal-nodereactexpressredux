@@ -7,14 +7,15 @@
   <script>(function(w,p,d){w[p]=d})(window,'__INITIAL_STATE__',<%-JSON.stringify(__INITIAL_STATE__)%>)</script>
 
   <%- include ../0_partials/head.ejs %>
+  <link rel="stylesheet" href="<%- CSS %>/<%- MAIN_ENTRY %>.css"></link>
 </head>
 <body>
 
 <div application-root><%- __PRERENDERED_HTML__ %></div>
 
 <div hidden class="hidden" id="Scripts">
-  <script src="/assets/<%- DLL.essentials %>.js"></script>
-  <script src="/assets/application.js"></script>
+  <script src="<%- ASSETS %>/<%- DLL.essentials %>.js"></script>
+  <script src="<%- ASSETS %>/<%- MAIN_ENTRY %>.js"></script>
 </div>
 </body>
 </html>
