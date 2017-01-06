@@ -1,0 +1,17 @@
+{
+  "restartable": "rs",
+  "ignore": [
+  ],
+  "verbose": true,
+  "watch": [
+    "build/node",
+    "src/node/**/*.ejs",
+    "index.js",
+    "nodemon.json"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "NODE_PORT": 3002
+  },
+  "ext": "js json ejs"
+}

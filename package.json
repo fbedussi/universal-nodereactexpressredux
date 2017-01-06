@@ -1,0 +1,72 @@
+{
+  "name": "universal-nodereactexpressredux",
+  "version": "1.0.0",
+  "description": "Universal StarterKit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack:base": "webpack --config webpack.config.js",
+    "webpack:browser": "webpack --config webpack.browser.config.js",
+    "webpack:node": "webpack --config webpack.node.config.js",
+    "webpack:dll": "webpack --config webpack.dll.config.js",
+    "webpack": "npm run webpack:dll && npm run webpack:base",
+    "webpack:prod": "npm run webpack:dll -- -p && npm run webpack:base && npm run webpack:browser -- -p ",
+    "webpack:watch": "npm run webpack:base -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitmands/universal-nodereactexpressredux.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "React",
+    "Redux"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hitmands/universal-nodereactexpressredux/issues"
+  },
+  "homepage": "https://github.com/hitmands/universal-nodereactexpressredux#readme",
+  "dependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-decorators": "^6.13.0",
+    "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-env": "^1.1.4",
+    "babel-preset-react": "^6.16.0",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "2.2.1",
+    "lodash": "^4.17.2",
+    "node-fetch": "1.6.3",
+    "qs": "^6.3.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-helmet": "^3.3.0",
+    "react-redux": "^5.0.1",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
+    "redux": "^3.6.0",
+    "webpack": "^2.2.0-rc.2",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard-react": "^4.2.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-flowtype": "^2.29.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "flow-bin": "^0.37.4",
+    "nodemon": "^1.11.0"
+  }
+}

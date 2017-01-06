@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" class="application-waiting dom-waiting win-waiting">
+<head>
+  <meta charset="UTF-8">
+  <script><%- include ../0_partials/_htmlClassListDecorator.js %></script>
+  <script><%- include ../0_partials/_polyfills.js %></script>
+  <script>(function(w,p,d){w[p]=d})(window,'__INITIAL_STATE__',<%-JSON.stringify(__INITIAL_STATE__)%>)</script>
+
+  <%- include ../0_partials/head.ejs %>
+</head>
+<body>
+
+<div application-root><%- __PRERENDERED_HTML__ %></div>
+
+<div hidden class="hidden" id="Scripts">
+  <script src="/assets/<%- DLL.essentials %>.js"></script>
+  <script src="/assets/application.js"></script>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "globals": {
+    "System": true
+  },
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "react"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "jsx-quotes": ["error", "prefer-double"],
+    "semi": ["error", "always"],
+    "padded-blocks": [0],
+    "no-console": [1],
+    "no-alert": [1],
+    "no-debugger": [1],
+    "space-before-function-paren": [0],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "keyword-spacing": ["error", { "overrides": {
+      "if": { "after": false },
+      "for": { "after": false },
+      "switch": { "after": false },
+      "while": { "after": false },
+      "catch": { "after": false }
+    } }]
+  }
+}
