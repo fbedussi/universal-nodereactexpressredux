@@ -3,8 +3,9 @@ import {
 } from 'config/env.config';
 
 import {IndexCtrl} from './Routes/Index/IndexCtrl';
-import {CreateViewModelMiddleware} from './Middlewares/CreateViewModelMiddleware';
-import {ReactReduxRendererMiddleware} from './Middlewares/ReactReduxRendererMiddleware';
+import {CreateViewModelMiddleware} from './Middlewares/ViewRendering/CreateViewModelMiddleware';
+import {RouteMatcherMiddleware} from './Middlewares/ViewRendering/RouteMatcherMiddleware';
+import {CreateInitialStateMiddleware} from './Middlewares/ViewRendering/CreateInitialStateMiddleware';
 
 export function decorate(app) {
 
@@ -13,7 +14,8 @@ export function decorate(app) {
 
     .get('/*',
       CreateViewModelMiddleware,
-      ReactReduxRendererMiddleware,
+      RouteMatcherMiddleware,
+      CreateInitialStateMiddleware,
 
       IndexCtrl
     )

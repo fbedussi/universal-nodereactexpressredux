@@ -1,9 +1,8 @@
 import {combineReducers} from 'redux';
-
 import {routerReducer as routing} from 'react-router-redux';
-import {linksStylesheet} from './Reducers/linksStylesheet/linksStylesheetReducers';
+import {title} from './Reducers/title/titleReducer';
 
 export const reducers = combineReducers({
-  linksStylesheet,
+  title,
   routing
 });

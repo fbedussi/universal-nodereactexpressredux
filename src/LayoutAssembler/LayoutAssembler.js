@@ -68,11 +68,7 @@ export class LayoutAssembler extends LayoutAssemblerBase {
       <div className={this.NS}>
         <Helmet
           htmlAttributes={this.htmlAttributes}
-          title="Test"
-          titleTemplate="Test.com - %s"
-          link={
-            [].concat(this.css)
-          }
+          title={this.title}
         />
 
         {this.renderHeader()}

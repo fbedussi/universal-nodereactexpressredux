@@ -1,4 +1,4 @@
 export {
-  addStylesheetLink,
-  removeStylesheetLink
-} from './Reducers/linksStylesheet/linksStylesheetActions';
+  defaultTitle,
+  changeTitle
+} from './Reducers/title/titleActions';

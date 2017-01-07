@@ -24,7 +24,6 @@ app
   .set('views', EJS_PATH)
 ;
 
-
 module.exports = function application() {
 
   return Promise

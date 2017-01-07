@@ -1,15 +1,10 @@
 import {Component, PropTypes} from 'react';
-import {Set} from 'immutable';
-
-import {
-  addStylesheetLink
-} from 'ACTION_CREATORS';
 
 export class LayoutAssemblerBase extends Component {
 
   static propTypes = {
+    title: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired,
-    linksStylesheet: PropTypes.objectOf(Set).isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -19,13 +14,6 @@ export class LayoutAssemblerBase extends Component {
   sidebarClasses = `${this.NS}-sidebar sidebar`;
   mainClasses = `${this.NS}-main main`;
 
-  componentWillMount() {
-
-    this.props.dispatch(
-      addStylesheetLink('test.css')
-    );
-  }
-
   get htmlAttributes() {
     let amp;
     let lang = 'en';
@@ -33,13 +21,7 @@ export class LayoutAssemblerBase extends Component {
     return {lang, amp};
   }
 
-  get css() {
-
-    return this
-      .props
-      .linksStylesheet
-      .toArray()
-      .map(href => ({rel: 'stylesheet', href}))
-      ;
+  get title() {
+    return this.props.title;
   }
 }
