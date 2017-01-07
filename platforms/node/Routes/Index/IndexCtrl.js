@@ -54,7 +54,9 @@ export function IndexCtrl(req, res) {
     .then(() => res.viewModel)
     .then(model => res.render('Index/Index', model))
     .catch(e => {
-      return res.status(500).end(e);
+      /* eslint no-console: 0 */
+      console.error('IndexCtrl.error', e);
+      return res.status(500).end();
     })
   ;
 }

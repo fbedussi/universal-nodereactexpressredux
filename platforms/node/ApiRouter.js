@@ -1,11 +1,16 @@
 import {API_PATH} from 'config/env.config';
 
 export function decorate(app) {
-  // TODO: Implement Proxy
 
-  app
-    .all(`${API_PATH}/*`, (req, res) => res.end())
-  ;
+  if(API_PATH) {
+    let proxy = require('http-proxy').createProxyServer();
+
+    app
+      .all(`${API_PATH}/*`, (req, res) => (
+        proxy.web(req, res, {target: API_PATH})
+      ))
+    ;
+  }
 
   return app;
 }

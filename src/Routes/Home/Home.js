@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-router';
 
-export class Home extends Component {
+class Home extends Component {
 
   render() {
     return (
@@ -9,3 +10,8 @@ export class Home extends Component {
   }
 }
 
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps
+)(Home);

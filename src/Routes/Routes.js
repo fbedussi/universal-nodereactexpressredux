@@ -16,7 +16,7 @@ export function lazyRouteLoading(path) {
 
 
 export const Home = (() => {
-  const HOME = './Home/HomeConnected';
+  const HOME = './Home/Home';
 
   return (
     <IndexRoute getComponent={lazyRouteLoading(HOME)} />
