@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import * as Router from './Router';
+import winston from 'winston';
 
 import {
   ENV_IS_PRODUCTION, ENV, PUBLIC_PATH,
@@ -13,12 +14,37 @@ import {
 
 const app = express();
 
+const logger = (() => {
+  let opts = {
+    colorize: false,
+    maxsize: 1000000, // 1MB,
+    zippedArchive: ENV_IS_PRODUCTION,
+  };
+
+  const transports = [
+    new (require('winston-daily-rotate-file'))(Object.assign({
+      filename: 'logs/log'
+    }, opts))
+  ];
+
+  if(!ENV_IS_PRODUCTION) {
+    transports.push(new (winston.transports.Console)({
+      prettyPrint: true,
+      colorize: true,
+      humanReadableUnhandledException: true
+    }));
+  }
+
+  return new (winston.Logger)({transports});
+})();
+
 app
   .set('port', PORT)
   .set('view engine', 'ejs')
   .set('view cache', ENV_IS_PRODUCTION)
   .set('env', ENV)
   .set('views', EJS_PATH)
+  .set('logger', logger)
 ;
 
 module.exports = function application() {

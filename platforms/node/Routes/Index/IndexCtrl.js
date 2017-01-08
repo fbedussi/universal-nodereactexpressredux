@@ -34,6 +34,7 @@ function createStore(initialState = Object.create(null)) {
 }
 
 export function IndexCtrl(req, res) {
+  const logger = req.app.get('logger');
   const store = createStore(Object.create(null));
 
   return Promise
@@ -63,8 +64,7 @@ export function IndexCtrl(req, res) {
     })
     .then(model => res.render('Index/Index', model))
     .catch(e => {
-      /* eslint no-console: 0 */
-      console.error('IndexCtrl.error', e);
+      logger.error('IndexCtrl.error', e);
       return res.status(500).end();
     })
   ;
