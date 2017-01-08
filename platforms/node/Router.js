@@ -63,9 +63,6 @@ export function addReverseApiProxy(app) {
 
 export function mapWebpackChunks(app) {
   return new Promise((resolve) => {
-    if(!ENV_IS_PRODUCTION) {
-      return resolve(app);
-    }
 
     require('fs')
       .readFile(`${BROWSER_BUILD}/stats.json`, 'utf8', (err, data) => {

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const excludeNodeModules = require('webpack-node-externals');
 const babelConfig = require('./config/webpack/babel.webpack');
 const eslintConfig = require('./config/webpack/eslint.webpack');
+const StatsWriterPlugin = require('stats-webpack-plugin');
 
 const {
   ENV_IS_DEVELOPMENT, ENV_IS_PRODUCTION, BUILD_ENV_PRODUCTION,
@@ -102,7 +103,11 @@ const browser = {
       manifest: require(path.join(BROWSER_BUILD, `${DLL.essentials}.json`))
     }),
     new webpack.DefinePlugin(BROWSER_CONSTANTS),
-    new webpack.optimize.OccurrenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new StatsWriterPlugin('stats.json', {
+      chunkModules: true,
+      exclude: /(node_modules|react)/
+    })
   ]
 };
 

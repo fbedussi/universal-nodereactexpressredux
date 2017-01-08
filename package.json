@@ -87,6 +87,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.37.4",
     "nodemon": "^1.11.0",
-    "parallelshell": "^2.0.0"
+    "parallelshell": "^2.0.0",
+    "source-map-support": "^0.4.8"
   }
 }

@@ -71,10 +71,22 @@ export function IndexCtrl(req, res) {
   ;
 }
 
-function matchWebpackChunks(chunks = [], renderProps) {
-  // TODO: Match chunks with renderProps
-  // mapWebpackChunks() at platforms/node/Router.js:64 [ENV_IS_PRODUCTION]
-  return [];
+function matchWebpackChunks(chunks = []) {
+  let used = global.__webpacklazyRouteLoadingRequiredChunks;
+  global.__webpacklazyRouteLoadingRequiredChunks = [];
+  if(!used) {
+    return [];
+  }
+
+  return chunks.reduce((res, c) => {
+    let chunk;
+
+    if(~used.indexOf(c.userRequest)) {
+      chunk = c;
+    }
+
+    return chunk ? res.concat(chunk) : res;
+  }, []);
 }
 
 export function match(req, res, next) {

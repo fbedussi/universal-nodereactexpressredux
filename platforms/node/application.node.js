@@ -5,8 +5,13 @@ import winston from 'winston';
 
 import {
   ENV_IS_PRODUCTION, ENV, PUBLIC_PATH,
-  PORT, HOST, API_PATH
+  PORT, HOST, API_PATH,
+  ENV_IS_DEVELOPMENT
 } from 'config/env.config';
+
+if(ENV_IS_DEVELOPMENT) {
+  require('source-map-support').install();
+}
 
 import {
   EJS_PATH
@@ -18,7 +23,7 @@ const logger = (() => {
   let opts = {
     colorize: false,
     maxsize: 1000000, // 1MB,
-    zippedArchive: ENV_IS_PRODUCTION,
+    zippedArchive: ENV_IS_PRODUCTION
   };
 
   const transports = [
