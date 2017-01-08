@@ -2,7 +2,7 @@
   "restartable": "rs",
   "ignore": [
   ],
-  "verbose": true,
+  "verbose": false,
   "watch": [
     "build/node",
     "src/node/**/*.ejs",
