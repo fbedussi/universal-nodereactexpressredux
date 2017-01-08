@@ -36,6 +36,8 @@ const NODE_CONSTANTS = merge({}, CONSTANTS, {
 
 const devtool = 'source-map';
 const context = SRC;
+const filename = `[name].js`;
+const chunkFilename = `[name].chunk.js`;
 
 const resolve = {
   modules: [
@@ -46,8 +48,8 @@ const resolve = {
   }
 };
 
-const N_ENTRY =  `../${PLATFORMS_DIRNAME}/${NODE_DIRNAME}/${MAIN_ENTRY_FILENAME}.${NODE_DIRNAME}.js`;
-const B_ENTRY =  `../${PLATFORMS_DIRNAME}/${BROWSER_DIRNAME}/${MAIN_ENTRY_FILENAME}.${BROWSER_DIRNAME}.js`;
+const N_ENTRY = `../${PLATFORMS_DIRNAME}/${NODE_DIRNAME}/${MAIN_ENTRY_FILENAME}.${NODE_DIRNAME}.js`;
+const B_ENTRY = `../${PLATFORMS_DIRNAME}/${BROWSER_DIRNAME}/${MAIN_ENTRY_FILENAME}.${BROWSER_DIRNAME}.js`;
 
 const node = {
   devtool, context, resolve,
@@ -58,7 +60,8 @@ const node = {
     [MAIN_ENTRY_FILENAME]: N_ENTRY
   },
   output: {
-    filename: `[name].js`,
+    chunkFilename,
+    filename,
     path: NODE_BUILD,
     libraryTarget: `commonjs2`
   },
@@ -82,7 +85,8 @@ const browser = {
     [MAIN_ENTRY_FILENAME]: B_ENTRY
   },
   output: {
-    filename: `[name].js`,
+    filename,
+    chunkFilename,
     path: BROWSER_BUILD,
     libraryTarget: `var`,
     publicPath: `${PUBLIC_PATH}/`
