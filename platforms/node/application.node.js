@@ -57,15 +57,15 @@ module.exports = function application() {
     .then(app => Router.addReverseApiProxy(app))
 
     .then(app => http.createServer(app))
-    .then(app => new Promise((resolve, reject) => (
+    .then(server => new Promise((resolve, reject) => (
 
-      app
+      server
         .listen(PORT, HOST, (err) => {
           if(err) {
             return reject(err);
           }
 
-          return resolve({
+          return resolve([{
             production: ENV_IS_PRODUCTION,
             url: `http://${HOST}:${PORT}`,
             public: PUBLIC_PATH,
@@ -73,9 +73,10 @@ module.exports = function application() {
             time: Date(),
             cwd: process.cwd(),
             env: ENV
-          });
+          }, app]);
         })
 
     )))
+    .catch(e => Promise.reject([e, app]))
     ;
 };

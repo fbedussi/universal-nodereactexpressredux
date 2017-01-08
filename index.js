@@ -1,12 +1,8 @@
-/* eslint no-console: 0 */
 require('./build/node/application')()
-  .then(data => {
-    console.info(
-      'Application:Starting.Done',
-      JSON.stringify(data, null, 2)
-    );
+  .then(([info, app]) => {
+    app.get('logger').info('Application:Starting.Done', info);
   })
-  .catch(error => {
-    console.error('Application:Starting.Error', error);
+  .catch(([error, app]) => {
+    app.get('logger').error('Application:Starting.Error', error);
   })
 ;
