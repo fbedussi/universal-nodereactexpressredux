@@ -16,6 +16,23 @@ import {
   MAIN_ENTRY_FILENAME
 } from 'config/build.config';
 
+
+function renderToString(store, props) {
+
+  return _renderToString(
+    <Provider store={store}>
+      {<RouterContext {...props} />}
+    </Provider>
+  );
+}
+function createStore(initialState = Object.create(null)) {
+  return _createStore(
+    reducers,
+    initialState,
+    middlewares
+  );
+}
+
 export function IndexCtrl(req, res) {
   const store = createStore(Object.create(null));
 
@@ -80,19 +97,3 @@ export function match(req, res, next) {
   );
 }
 
-function renderToString(store, props) {
-
-  return _renderToString(
-    <Provider store={store}>
-      {<RouterContext {...props} />}
-    </Provider>
-  );
-}
-
-function createStore(initialState = Object.create(null)) {
-  return _createStore(
-    reducers,
-    initialState,
-    middlewares
-  );
-}
