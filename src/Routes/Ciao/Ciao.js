@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class Home extends Component {
+class Ciao extends Component {
 
   render() {
     return (
-      <h1>HOME PAGE</h1>
+      <h1>Ciao</h1>
     );
   }
 }
@@ -14,4 +14,4 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps
-)(Home);
+)(Ciao);

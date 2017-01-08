@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import {routerReducer as routing} from 'react-router-redux';
-import {title} from './Store/title/titleReducer';
+import {application} from './Store/application/reducer';
 
 export const reducers = combineReducers({
-  title,
+  application,
   routing
 });

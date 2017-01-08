@@ -11,9 +11,11 @@ const {
 const dll = {
   entry: {
     [DLL.essentials]: [
+      'babel-polyfill',
       'qs',
-      'redux',
       'react',
+      'redux',
+      'redux-saga',
       'immutable',
       'react-dom',
       'react-redux',

@@ -1,9 +1,6 @@
 import express from 'express';
 import http from 'http';
-import * as BodyParsers from './BodyParsers';
-import * as StaticRouter from './StaticRouter';
-import * as ApiRouter from './ApiRouter';
-import * as ViewsRouter from './ViewsRouter';
+import * as Router from './Router';
 
 import {
   ENV_IS_PRODUCTION, ENV, PUBLIC_PATH,
@@ -29,10 +26,9 @@ module.exports = function application() {
   return Promise
     .resolve(app)
 
-    .then(app => BodyParsers.decorate(app))
-    .then(app => StaticRouter.decorate(app))
-    .then(app => ViewsRouter.decorate(app))
-    .then(app => ApiRouter.decorate(app))
+    .then(app => Router.addStaticRoutes(app))
+    .then(app => Router.addIndexRoute(app))
+    .then(app => Router.addReverseApiProxy(app))
 
     .then(app => http.createServer(app))
     .then(app => new Promise((resolve, reject) => (

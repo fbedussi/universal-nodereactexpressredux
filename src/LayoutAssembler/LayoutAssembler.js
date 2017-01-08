@@ -1,81 +1,48 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {LayoutAssemblerBase} from './LayoutAssemblerBase';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
-export class LayoutAssembler extends LayoutAssemblerBase {
+import {getTitle} from 'SELECTORS';
 
-  renderHeader() {
-    let Header;
-    let classes = this.headerClasses;
+class LayoutAssembler extends Component {
 
-    switch(this.props) {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    children: PropTypes.any.isRequired
+  };
 
-      default:
-        Header = '';
-        classes += ' header-default';
-    }
-
-    return (
-      <header className={classes}>
-        {Header}
-      </header>
-    );
-  }
-
-  renderSidebar() {
-    let sidebar;
-    let classes = this.sidebarClasses;
-
-    switch(this.props) {
-
-      default:
-        sidebar = '';
-        classes += ' sidebar-default';
-    }
-
-    return (
-      <aside className={classes}>{sidebar}</aside>
-    );
-  }
-
-  renderFooter() {
-    let footer;
-    let classes = this.footerClasses;
-
-    switch(this.props) {
-
-      default:
-        footer = '';
-        classes += ' footer-default';
-    }
-
-    return (
-      <footer className={classes}>{footer}</footer>
-    );
-  }
-
-  renderMain() {
-    return (
-      <main className={this.mainClasses}>
-        {this.props.children}
-      </main>
-    );
-  }
+  NS = 'application';
 
   render() {
 
     return (
       <div className={this.NS}>
         <Helmet
-          htmlAttributes={this.htmlAttributes}
-          title={this.title}
+          title={this.props.title}
         />
 
-        {this.renderHeader()}
-        {this.renderSidebar()}
-        {this.renderMain()}
-        {this.renderFooter()}
+        <header>
+          <ol>
+            <li>
+              <Link to={'/'} >Home</Link>
+            </li>
+            <li>
+              <Link to={'/ciao'} >Ciao</Link>
+            </li>
+          </ol>
+        </header>
+
+        {this.props.children}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  title: getTitle(state)
+});
+
+export default connect(
+  mapStateToProps
+)(LayoutAssembler);

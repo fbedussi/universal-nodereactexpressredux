@@ -22,3 +22,10 @@ export const Home = (() => {
     <IndexRoute getComponent={lazyRouteLoading(HOME)} />
   );
 })();
+export const Ciao = (() => {
+  const Ciao = './Ciao/Ciao';
+
+  return (
+    <IndexRoute getComponent={lazyRouteLoading(Ciao)} />
+  );
+})();

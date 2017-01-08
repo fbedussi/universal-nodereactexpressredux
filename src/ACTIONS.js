@@ -1,3 +1,3 @@
 export {
-  changeTitle
+  CHANGE_TITLE
 } from './Store/application/actions';

@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
@@ -5,10 +7,9 @@ import {createStore, compose as _compose} from 'redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {Router, browserHistory, match} from 'react-router';
 
-
 import {RoutesTree as routes} from 'RoutesTree';
 import {reducers} from 'Reducers';
-import {middlewares} from 'Middlewares';
+import {middlewares, sagaMiddleware} from 'Middlewares';
 
 
 const compose = (devtool => {
@@ -32,6 +33,8 @@ const store = createStore(
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
+
+sagaMiddleware.run();
 
 const notifyRenderingDone = () => {
   let html = document.documentElement;
