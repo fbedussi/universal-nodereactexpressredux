@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router';
 
-import LayoutAssembler from './LayoutAssembler/LayoutAssembler';
+import Layout from './Layout/Layout';
 
 import {
   Home,
@@ -9,7 +9,7 @@ import {
 } from './Routes/Routes';
 
 export const RoutesTree = (
-  <Route component={LayoutAssembler}>
+  <Route component={Layout}>
     <Route path="/">
       {Home}
     </Route>
