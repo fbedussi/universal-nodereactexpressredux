@@ -36,13 +36,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 sagaMiddleware.run();
 
-const notifyRenderingDone = () => {
-  let html = document.documentElement;
-
-  html.classList.remove('application-waiting');
-  html.classList.add('application-mounted');
-};
-
 match(
   {history, routes},
 
@@ -65,8 +58,7 @@ match(
         </Provider>
       ),
 
-      document.querySelector('[application-root]'),
-      notifyRenderingDone
+      document.querySelector('[application-root]')
     );
   })
 ;

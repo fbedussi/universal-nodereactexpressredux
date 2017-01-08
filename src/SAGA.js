@@ -5,6 +5,7 @@ import {
 } from 'ACTIONS';
 
 function* logger(action) {
+  /* eslint no-console: 0 */
   yield takeEvery(CHANGE_TITLE, () => console.log('Change Title'));
 }
 

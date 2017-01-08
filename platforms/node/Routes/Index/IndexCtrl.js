@@ -58,7 +58,8 @@ export function IndexCtrl(req, res) {
           MAIN_ENTRY_FILENAME,
           /* eslint no-undef: 0 */
           CSS: __WEBPACK_DEFINED_CSSPATH__,
-          ASSETS: __WEBPACK_DEFINED_PUBLICPATH__
+          ASSETS: __WEBPACK_DEFINED_PUBLICPATH__,
+          webpackCurrentChunks: res.__webpackCurrentChunks || []
         })
       ;
     })
@@ -70,8 +71,14 @@ export function IndexCtrl(req, res) {
   ;
 }
 
+function matchWebpackChunks(chunks = [], renderProps) {
+  // TODO: Match chunks with renderProps
+  // mapWebpackChunks() at platforms/node/Router.js:64 [ENV_IS_PRODUCTION]
+  return [];
+}
 
 export function match(req, res, next) {
+
   return _match(
     {routes, location: req.url},
 
@@ -90,6 +97,12 @@ export function match(req, res, next) {
         // Do Something with a 404
         return res.status(404).end();
       }
+
+      res.__webpackCurrentChunks = matchWebpackChunks(
+        req.app.get('webpackChunksMap'),
+        renderProps
+      );
+
 
       res.__RENDERPROPS__ = renderProps;
       next();

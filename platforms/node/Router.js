@@ -2,7 +2,8 @@ import express from 'express';
 
 import {
   PUBLIC_FS_PATH,
-  PUBLIC_PATH
+  PUBLIC_PATH,
+  BROWSER_BUILD
 } from 'config/build.config';
 
 import {
@@ -58,4 +59,50 @@ export function addReverseApiProxy(app) {
   }
 
   return app;
+}
+
+export function mapWebpackChunks(app) {
+  return new Promise((resolve) => {
+    if(!ENV_IS_PRODUCTION) {
+      return resolve(app);
+    }
+
+    require('fs')
+      .readFile(`${BROWSER_BUILD}/stats.json`, 'utf8', (err, data) => {
+        let chunks;
+        try {
+          chunks = data && JSON.parse(data).chunks;
+        } catch(e) {}
+        if(err || !chunks || !chunks.length) {
+          return resolve(app);
+        }
+
+        let res = chunks
+          .reduce((res, {initial, id, modules}) => {
+            if(initial) {
+              return res;
+            }
+            let chunk;
+
+            try {
+              let userRequest = modules[0].reasons[0].userRequest;
+              chunk = {
+                id,
+                userRequest
+              };
+            } catch(e) {}
+
+            return chunk ? res.concat(chunk) : res;
+          }, [])
+        ;
+
+        app.set('webpackChunksMap', res);
+        app.get('logger').info('WebPack Chunks Map', res);
+
+        return resolve(app);
+      })
+    ;
+
+  })
+  ;
 }

@@ -13,7 +13,7 @@ export const RoutesTree = (
     <Route path="/">
       {Home}
     </Route>
-    <Route path="/ciao">
+    <Route path="/ciao/:id">
       {Ciao}
     </Route>
   </Route>

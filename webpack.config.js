@@ -37,7 +37,7 @@ const NODE_CONSTANTS = merge({}, CONSTANTS, {
 const devtool = 'source-map';
 const context = SRC;
 const filename = `[name].js`;
-const chunkFilename = `[name].chunk.js`;
+const chunkFilename = `[id].js`;
 
 const resolve = {
   modules: [

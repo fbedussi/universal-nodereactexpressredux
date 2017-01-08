@@ -20,6 +20,9 @@
 <div hidden class="hidden" id="Scripts">
   <script src="<%- ASSETS %>/<%- DLL.essentials %>.js"></script>
   <script src="<%- ASSETS %>/<%- MAIN_ENTRY_FILENAME %>.js"></script>
+  <% for(var i = 0; i < webpackCurrentChunks.length; i++) {%>
+  <script src="<%- ASSETS %>/<%- webpackCurrentChunks[i].id %>.js" data-chunk="<%- JSON.stringify(webpackCurrentChunks[i]) %>"></script>
+  <% } %>
 </div>
 </body>
 </html>

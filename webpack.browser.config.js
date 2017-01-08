@@ -1,11 +1,11 @@
-const StatsPlugin = require('stats-webpack-plugin');
+const StatsWriterPlugin = require('stats-webpack-plugin');
 const [, browser] = require('./webpack.config');
 
 
 browser.plugins.push(
-  new StatsPlugin('stats.json', {
+  new StatsWriterPlugin('stats.json', {
     chunkModules: true,
-    exclude: /node_modules/
+    exclude: /(node_modules|react)/
   })
 );
 
