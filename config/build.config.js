@@ -7,7 +7,9 @@ const {
   NODEMODULES_PATH,
   PACKAGEJSON_PATH,
   ROOT,
-  PUBLIC_PATH
+  PUBLIC_PATH,
+  API_PATH,
+  ENV
 } = require('./env.config');
 
 const CONFIGS_DIRNAME = 'config';
@@ -42,6 +44,7 @@ const configs = merge(
   Object.create(null),
 
   {
+    ENV,
     ENV_IS_PRODUCTION,
     ENV_IS_DEVELOPMENT,
 
@@ -71,7 +74,8 @@ const configs = merge(
     MAIN_ENTRY_FILENAME,
     DLL,
     CSS_BUILD,
-    CSS_PUBLIC
+    CSS_PUBLIC,
+    API_PATH
   }
 );
 
