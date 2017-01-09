@@ -57,10 +57,10 @@ module.exports = function application() {
   return Promise
     .resolve(app)
 
-    .then(app => Router.addStaticRoutes(app))
-    .then(app => Router.addIndexRoute(app))
     .then(app => Router.addReverseApiProxy(app))
     .then(app => Router.mapWebpackChunks(app))
+    .then(app => Router.addStaticRoutes(app))
+    .then(app => Router.addIndexRoute(app))
 
     .then(app => http.createServer(app))
     .then(server => new Promise((resolve, reject) => (
