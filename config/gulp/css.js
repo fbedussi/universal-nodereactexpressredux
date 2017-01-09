@@ -19,10 +19,10 @@ const {
 
 let globs = [
   `${MAIN_ENTRY_FILENAME}.scss`,
-  'LayoutAssembler/**/!(_)*.scss',
+  'Layout/**/!(_)*.scss',
   'Routes/**/!(_)*.scss',
   'Components/**/!(_)*.scss'
-].map(i => path.join(SRC, i));
+].map(i => path.normalize(path.join(SRC, i)));
 
 const dest = path.relative(ROOT, CSS_BUILD);
 

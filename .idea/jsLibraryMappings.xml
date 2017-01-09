@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{universal-nodereactexpressredux/node_modules}" />
-    <file url="PROJECT" libraries="{jest-DefinitelyTyped, node-DefinitelyTyped, react-DefinitelyTyped, react-router-DefinitelyTyped, react-router-redux-DefinitelyTyped, redux-DefinitelyTyped, redux-router-DefinitelyTyped, universal-nodereactexpressredux/node_modules, webpack-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{node-DefinitelyTyped, react-DefinitelyTyped, redux-DefinitelyTyped}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
