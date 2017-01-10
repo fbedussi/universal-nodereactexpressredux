@@ -3,16 +3,38 @@ import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-import {getTitle} from 'SELECTORS';
+import {
+  getTitle,
+  getStylesheets
+} from 'SELECTORS';
+
+import {
+  addStylesheet
+} from 'ACTION_CREATORS';
 
 class LayoutAssembler extends Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,
-    children: PropTypes.any.isRequired
+    children: PropTypes.any.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    stylesheets: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   NS = 'application';
+
+  componentWillMount() {
+    this.props.dispatch(addStylesheet('test.css'));
+  }
+
+  get stylesheets() {
+    return this.props.stylesheets
+      .map(href => ({
+        rel: 'stylesheet',
+        href
+      }))
+      ;
+  }
 
   render() {
 
@@ -20,6 +42,7 @@ class LayoutAssembler extends Component {
       <div className={this.NS}>
         <Helmet
           title={this.props.title}
+          link={[].concat(this.stylesheets)}
         />
 
         <header>
@@ -40,7 +63,8 @@ class LayoutAssembler extends Component {
 }
 
 const mapStateToProps = state => ({
-  title: getTitle(state)
+  title: getTitle(state),
+  stylesheets: getStylesheets(state)
 });
 
 export default connect(

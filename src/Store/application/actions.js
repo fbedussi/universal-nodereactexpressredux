@@ -5,10 +5,6 @@ import type {
   ACTION_TYPE
 } from 'TYPES/Actions';
 
-import type {
-  State
-} from './types';
-
 export const NS: string = '@@application';
 
 export const TITLE_NS: string = 'title';

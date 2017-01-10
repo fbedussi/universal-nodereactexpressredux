@@ -1,3 +1,5 @@
 export {
-  changeTitle
+  changeTitle,
+  addStylesheet,
+  removeStylesheet
 } from './Store/application/actions';
